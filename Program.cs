@@ -1,6 +1,7 @@
 using BelajarSharp.configapp;
 
 using Newtonsoft.Json.Serialization;
+using QueryBuilderSharp.example.application_parameters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+// start dependency injection
+builder.Services.AddScoped<AppParamRepo, ApplicationParameterRepository>();
+//end dependedncy injection
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; })
